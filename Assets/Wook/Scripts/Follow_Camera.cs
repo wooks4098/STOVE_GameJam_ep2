@@ -14,10 +14,12 @@ public class Follow_Camera : MonoBehaviour
     private void LateUpdate()
     {
         Vector3 vec = Camera.transform.position - transform.position;
-        vec.Normalize();
+       
+        //vec = new Vector3(0, vec.y, 0);
         Quaternion q = Quaternion.LookRotation(vec);
-   
+
         transform.rotation = q;
+       
 
         //transform.rotation = Quaternion.Euler(0, q.y,0);
     }
