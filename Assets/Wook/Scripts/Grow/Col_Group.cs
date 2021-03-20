@@ -121,6 +121,7 @@ public class Col_Group : MonoBehaviour
             , Growth_Scale_x, Growth_Scale_y, Growth_Time
             , Growth_Position_y, Flower_Add_Min_Level, Flower_Add_Rate);
         newObject.transform.parent = gameObject.transform;
+        newObject.transform.localPosition = new Vector3(0, 0, 0);
         Trunk_Count++;
 
 

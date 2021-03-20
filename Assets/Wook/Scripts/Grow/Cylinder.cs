@@ -49,7 +49,7 @@ public class Cylinder : MonoBehaviour
         newObject.GetComponentInChildren<Col_Group>().cylinder = this.gameObject.GetComponent<Cylinder>();
         newObject.transform.parent = transform.GetChild(pos.y).transform;
         newObject.GetComponentInChildren<Col_Group>().SetPos(pos.x, pos.y);
-        newObject.transform.localPosition = new Vector3(0, 0, 0);
+        newObject.transform.localPosition = new Vector3(-pos.x, 0, 0);
 
     }
 
