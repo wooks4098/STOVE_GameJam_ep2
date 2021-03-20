@@ -36,13 +36,13 @@ public class ColorPicker : MonoBehaviour
     [SerializeField]
     private UnityEngine.UI.Image targetImage;
 
-    private Point lastPoint;
+    private System.Drawing.Point lastPoint;
     private string lastHex;
     private HslColor lastHSL;
 
     private void Awake()
     {
-        lastPoint = new Point(imageWidth / 2, imageHeight / 2);
+        lastPoint = new System.Drawing.Point(imageWidth / 2, imageHeight / 2);
         SetL(0.5f);
     }
 
@@ -178,7 +178,7 @@ public class ColorPicker : MonoBehaviour
         lastHSL = hslColor;
     }
 
-    public void SetColor(Point point)
+    public void SetColor(System.Drawing.Point point)
     {
         CalculateWheel();
         double dx;
