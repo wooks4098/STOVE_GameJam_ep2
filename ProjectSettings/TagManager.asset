@@ -3,7 +3,23 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Row_0
+  - Row_1
+  - Row_2
+  - Row_3
+  - Row_4
+  - Row_5
+  - Row_6
+  - Row_7
+  - Row_8
+  - Row_9
+  - Row_10
+  - Row_11
+  - Row_12
+  - Row_13
+  - Row_14
+  - Row_15
   layers:
   - Default
   - TransparentFX
