@@ -92,8 +92,6 @@ public class Trunk_ : MonoBehaviour
 
     void Pos_Growth()
     {
-        //MyPos_x = Parents_Pos_x * Pos_x_Growth;
-        //MyPos_y = Parents_Pos_y * Pos_y_Growth;
         
         transform.localPosition = new Vector3(0, MyPos_y, 0);
     }
@@ -114,20 +112,21 @@ public class Trunk_ : MonoBehaviour
         transform.localScale = new Vector3(MyScale_x, MyScale_y, transform.localScale.z);
 
     }
+
+    //Col에 의해 Trunnk가 생성될 때 Col의 유전 성장률을 받아오는 함수
     public void SetChildData(int _Number, float _Scale_x_Growth, float _Scale_y_Growth, float _Growth_time, float _Pos_y_Growth, int _Flower_Add_Min_Level, int _Flower_Add_Rate)
     {
 
         Number = _Number;
 
-        //Scale_x_Growth = _Scale_x_Growth;
-        //Scale_y_Growth = _Scale_y_Growth;
-        //Growth_time = _Growth_time;
 
-        ////Pos_x_Growth = _Pos_x_Growth;
-        //Pos_y_Growth = _Pos_y_Growth;
-
+        //스케일
         Scale_x_Growth = Mathf.Pow(_Scale_x_Growth, (Number - 1));
         Scale_y_Growth = Mathf.Pow(_Scale_y_Growth, (Number - 1));
+
+        //포지션 Y값
+        MyPos_y = 1 * (Number - 1) * Mathf.Pow(_Pos_y_Growth, (Number - 1));
+
         Growth_time = _Growth_time;
 
         System.Random rnd = new System.Random();
@@ -136,13 +135,7 @@ public class Trunk_ : MonoBehaviour
         if (Number >= _Flower_Add_Min_Level - 1 && rndN < _Flower_Add_Rate)
             IsFlower = true;
 
-        MyPos_y = 1 * (Number - 1) * Mathf.Pow(_Pos_y_Growth, (Number - 1));
 
-
-        //newObject.GetComponent<Trunk_>().SetChildData(Trunk_Count
-        //   , Mathf.Pow((Trunk_Count - 1), Growth_Scale_x), Mathf.Pow((Trunk_Count - 1), Growth_Scale_y), 5f
-        //   , 1 * (Trunk_Count - 1) * Mathf.Pow((Trunk_Count - 1), Growth_Position_y));
-        //newObject.transform.parent = gameObject.transform;
     }
 
     void Look_Camera()

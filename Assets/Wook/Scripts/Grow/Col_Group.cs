@@ -124,10 +124,11 @@ public class Col_Group : MonoBehaviour
         if (Trunk_Count >= Trunk_Max_Count)
             return;
 
-        newObject = Instantiate(PreFab);
+        newObject = Instantiate(PreFab);//Trunk 생성
+
         newObject.GetComponent<Trunk_>().SetChildData(Trunk_Count
             , Growth_Scale_x, Growth_Scale_y, Growth_Time
-            , Growth_Position_y, Flower_Add_Min_Level, Flower_Add_Rate);
+            , Growth_Position_y, Flower_Add_Min_Level, Flower_Add_Rate); //Trunk에 Col유전성장률 주기
         newObject.transform.parent = gameObject.transform;
         newObject.transform.localPosition = new Vector3(0, 0, 0);
         Trunk_Count++;
