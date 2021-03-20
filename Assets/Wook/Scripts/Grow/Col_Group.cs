@@ -9,7 +9,6 @@ public class Col_Group : MonoBehaviour
     Point Search_pos;
     int Trunk_Count = 1;
     int Trunk_Max_Count = 10;
-    int count = 1;
 
     //Trunk 성장관련
     public float Growth_Scale_x;
@@ -34,8 +33,7 @@ public class Col_Group : MonoBehaviour
     List<Dictionary<string, object>> data;
     GameObject newObject;
 
-    public static float h = 0.0f;
-
+    
 
     void Start()
     {
@@ -44,12 +42,10 @@ public class Col_Group : MonoBehaviour
 
     private void Awake()
     {
-        if (count == 1)
-        {
-            loadCsv();
-            init = Initialize(new System.Random().Next(0, 89));       //100 알악세포 정보 들고오기
-            count++;
-        }
+        loadCsv();
+        init = Initialize(9);       //100 알악세포 정보 들고오기
+        //CSVReader.count++;
+
         Creat_Trunk();
         Diffusion_Time = 3f;
         transform.localPosition = new Vector3(0, 0, 0);
@@ -67,11 +63,6 @@ public class Col_Group : MonoBehaviour
         MyPos.y = y;
 
         //transform.parent.localPosition = new Vector3(0, 0, 0);
-    }
-
-    public void InitCol(int x, int y, Color color)
-    {
-
     }
 
     void Diffusion()
@@ -135,7 +126,7 @@ public class Col_Group : MonoBehaviour
 
         newObject.GetComponent<Trunk_>().SetChildData(Trunk_Count
             , Growth_Scale_x, Growth_Scale_y, Growth_Time
-            , Growth_Position_y, Flower_Add_Min_Level, Flower_Add_Rate, h); //Trunk에 Col유전성장률 주기
+            , Growth_Position_y, Flower_Add_Min_Level, Flower_Add_Rate); //Trunk에 Col유전성장률 주기
         newObject.transform.parent = gameObject.transform;
         newObject.transform.localPosition = new Vector3(0, 0, 0);
         Trunk_Count++;
