@@ -23,6 +23,14 @@ public class Flower : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
+       if(time <= 5)
+        {
+            ScaleUp();
+        }
+    }
+
+    void ScaleUp()
+    {
         MyScale_x = Mathf.Lerp(0, 1, time / 5);
         MyScale_y = Mathf.Lerp(0, 1, time / 5);
 

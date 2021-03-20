@@ -62,14 +62,14 @@ public class Cylinder : MonoBehaviour
             pos.x = i;
             None.Add(pos);
 
-            pos.x = i + 12;
+            pos.x = i + 11;
             None.Add(pos);
 
             pos.y = 15;
             pos.x = i;
             None.Add(pos);
 
-            pos.x = i + 12;
+            pos.x = i + 11;
             None.Add(pos);
 
         }
@@ -80,14 +80,14 @@ public class Cylinder : MonoBehaviour
             None.Add(pos);
 
 
-            pos.x = i + 14;
+            pos.x = i + 13;
             None.Add(pos);
 
             pos.y = 14;
             pos.x = i;
             None.Add(pos);
 
-            pos.x = i + 14;
+            pos.x = i + 13;
             None.Add(pos);
         }
         for (int i = 0; i < 2; i++)
@@ -97,14 +97,14 @@ public class Cylinder : MonoBehaviour
             None.Add(pos);
 
 
-            pos.x = i + 13;
+            pos.x = i + 14;
             None.Add(pos);
 
             pos.y = 13;
             pos.x = i;
             None.Add(pos);
 
-            pos.x = i + 13;
+            pos.x = i + 14;
             None.Add(pos);
         }
 
