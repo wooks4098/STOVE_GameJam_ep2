@@ -118,14 +118,15 @@ public class Trunk_ : MonoBehaviour
     {
 
         Number = _Number;
-
-
-        //스케일
-        Scale_x_Growth = Mathf.Pow(_Scale_x_Growth, (Number - 1));
-        Scale_y_Growth = Mathf.Pow(_Scale_y_Growth, (Number - 1));
+        float h = transform.GetComponent<RectTransform>().rect.height;
 
         //포지션 Y값
-        MyPos_y = 1 * (Number - 1) * Mathf.Pow(_Pos_y_Growth, (Number - 1));
+        MyPos_y = MyPos_y + (Scale_y_Growth * h * Number) + _Pos_y_Growth;
+
+        //스케일
+        Scale_x_Growth = _Scale_x_Growth * Mathf.Pow(0.8f, (Number));
+        Scale_y_Growth = _Scale_y_Growth * Mathf.Pow(0.8f, (Number));
+
 
         Growth_time = _Growth_time;
 
