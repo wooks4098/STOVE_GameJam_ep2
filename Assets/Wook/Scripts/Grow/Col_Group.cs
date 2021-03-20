@@ -91,8 +91,8 @@ public class Col_Group : MonoBehaviour
             }
 
 
-            Search_pos.x = Random.Range(-1, 2) + MyPos.x;
-            Search_pos.y = Random.Range(-1, 2) + MyPos.y;
+            Search_pos.x = UnityEngine.Random.Range(-1, 2) + MyPos.x;
+            Search_pos.y = UnityEngine.Random.Range(-1, 2) + MyPos.y;
 
             if (!((Search_pos.x >= 0 && Search_pos.x <= 15) && (Search_pos.y >= 0 && Search_pos.y <= 15)))
                 continue;
