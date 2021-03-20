@@ -8,7 +8,7 @@ public class Col_Group : MonoBehaviour
     Point MyPos;
     Point Search_pos;
     int Trunk_Count = 1;
-    int Trunk_Max_Count = 1;
+    int Trunk_Max_Count = 10;
 
     //Trunk 성장관련
     public float Growth_Scale_x;
@@ -176,9 +176,6 @@ public class Col_Group : MonoBehaviour
         jo.AddField("smalltrunkRate", data[i]["Smalltrunk_Rate"].ToString());                                           //작은 브랜치가 붙을 확률
 
         return jo;
-        /*newObject.transform.position = new Vector3(target.transform.position.x, target.transform.position.y + baseNumber * chgY + count * chgY, target.transform.position.z);
-        newObject.transform.localScale = new Vector3(1, 1, 1);
-        newObject.transform.SetParent(target.transform);*/
     }
 }
 
