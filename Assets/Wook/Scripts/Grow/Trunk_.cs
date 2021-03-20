@@ -124,8 +124,8 @@ public class Trunk_ : MonoBehaviour
         MyPos_y = MyPos_y + _Parent_Height + _Pos_y_Growth;
 
         //스케일
-        Scale_x_Growth = _Scale_x_Growth * Mathf.Pow(0.8f, (Number));
-        Scale_y_Growth = _Scale_y_Growth * Mathf.Pow(0.8f, (Number));
+        Scale_x_Growth = _Scale_x_Growth * Mathf.Pow(0.4f, (Number));
+        Scale_y_Growth = _Scale_y_Growth * Mathf.Pow(0.4f, (Number));
 
 
         Growth_time = _Growth_time;
