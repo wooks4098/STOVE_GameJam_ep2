@@ -38,6 +38,9 @@ public class Trunk_ : MonoBehaviour
     public GameObject Flower;
     GameObject Camera;
 
+    public static float start_time;
+
+
     private void Awake()
     {
         Camera = GameObject.FindWithTag("MainCamera");
@@ -66,6 +69,7 @@ public class Trunk_ : MonoBehaviour
                 if(IsFlower)
                 {
                     Flower.SetActive(true);
+                    start_time = Time.deltaTime;        //꽃이 켜지면 시작시간을 측정한다.
                 }
                 else
                 {
