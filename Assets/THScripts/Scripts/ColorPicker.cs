@@ -48,7 +48,9 @@ public class ColorPicker : MonoBehaviour
 
     public void SetL(float value)
     {
-        l = value;
+        if(0.3f <= value && value <= 0.7f)
+            l = value;
+
         text.text = l.ToString();
         SetColor();
         slider.value = l;
@@ -60,11 +62,14 @@ public class ColorPicker : MonoBehaviour
 
         if (System.Double.TryParse(value, out newL))
         {
-            if(newL < 0 || newL > 1)
+            if(newL < 0.3d - Mathf.Epsilon || newL > 0.7d + Mathf.Epsilon)
             {
+                Debug.Log(newL);
+                text.text = l.ToString();
                 return;
             }
 
+            
             l = (float)newL;
             slider.value = l;
             text.text = l.ToString();
@@ -219,7 +224,7 @@ public class ColorPicker : MonoBehaviour
         
         HslColor hslColor = new HslColor(angle, saturation, l);
         System.Drawing.Color color = hslColor.ToRgbColor();
-        selectedColor = new UnityEngine.Color(color.R / 256f, color.G / 256f,  color.B / 256f, 1f);
+        selectedColor = new UnityEngine.Color(color.R / 255f, color.G / 255f,  color.B / 255f, 1f);
         targetImage.color = selectedColor;
         colorText.text = "#" + UnityEngine.ColorUtility.ToHtmlStringRGB(selectedColor);
         lastHex = colorText.text;
