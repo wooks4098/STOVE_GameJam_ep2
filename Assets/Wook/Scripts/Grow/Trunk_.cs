@@ -28,11 +28,9 @@ public class Trunk_ : MonoBehaviour
     public float Pos_y_Growth;
     [Space(10f)]
 
-
-
-
-
     public float time;
+
+    public static float start_time;
 
     public GameObject Edge;
     public GameObject Flower;
@@ -65,6 +63,7 @@ public class Trunk_ : MonoBehaviour
                 if(IsFlower)
                 {
                     Flower.SetActive(true);
+                    start_time = Time.deltaTime;        //꽃이 켜지면 시작시간을 측정한다.
                 }
                 else
                 {

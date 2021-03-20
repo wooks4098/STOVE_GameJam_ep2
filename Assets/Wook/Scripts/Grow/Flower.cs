@@ -27,7 +27,8 @@ public class Flower : MonoBehaviour
         MyScale_x = Mathf.Lerp(0, 1, time / 5);
         MyScale_y = Mathf.Lerp(0, 1, time / 5);
 
-        if (time < 1.7)
+        
+        if (Time.deltaTime - Trunk_.start_time < 2000)       //현재시간-꽃이켜진시간 < 2초
             transform.localScale = new Vector3(MyScale_x, MyScale_y, transform.localScale.z);
     }
 }
