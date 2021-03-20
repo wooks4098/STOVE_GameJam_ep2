@@ -22,8 +22,6 @@ public class Cylinder : MonoBehaviour
     void Awake()
     {
 
-    
-
         for (int y = 0; y < 16; y++)
         {
             for (int x = 0; x < 16; x++)
@@ -33,10 +31,42 @@ public class Cylinder : MonoBehaviour
         }
 
         None_DataSet();
-        Point pos;
-        pos.x = 8;
-        pos.y = 8;
-        Creat_Col(pos);
+        //Point pos;
+        //pos.x = 8;
+        //pos.y = 8;
+        //Creat_Col(pos);
+    }
+
+    public void PlayCol(Color[,] colors)
+    {
+        for(int i = 0; i < colors.GetLength(0); i++)
+        {
+            for (int j = 0; j < colors.GetLength(0); j++)
+            {
+                if(colors[i,j] != Color.clear)
+                {
+                    Point newPos;
+                    newPos.x = j;
+                    newPos.y = i;
+                    Creat_Col(newPos);
+                }
+            }
+        }
+    }
+
+    public void Creat_Col(Point pos, Color color)
+    {
+        string str;
+        cylinder[pos.y, pos.x] = true;
+        GameObject newObject = Instantiate(Col_Prefab);
+        str = "Col (" + pos.x + ")";
+        newObject.name = str;
+        newObject.GetComponentInChildren<Col_Group>().cylinder = this.gameObject.GetComponent<Cylinder>();
+        newObject.transform.parent = transform.GetChild(pos.y).transform;
+        newObject.GetComponentInChildren<Col_Group>().SetPos(pos.x, pos.y);
+        newObject.GetComponentInChildren<Col_Group>().InitCol(pos.x, pos.y, color);
+        newObject.transform.localPosition = new Vector3(-pos.x, 0, 0);
+
     }
 
     public void Creat_Col(Point pos)

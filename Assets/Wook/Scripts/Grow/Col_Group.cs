@@ -69,6 +69,11 @@ public class Col_Group : MonoBehaviour
         //transform.parent.localPosition = new Vector3(0, 0, 0);
     }
 
+    public void InitCol(int x, int y, Color color)
+    {
+
+    }
+
     void Diffusion()
     {
         if (Trunk_Count >= 3)// Trunk가 3이상인가
