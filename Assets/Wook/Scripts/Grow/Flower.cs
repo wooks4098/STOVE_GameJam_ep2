@@ -1,4 +1,11 @@
-﻿using System.Collections;
+﻿— 균형생장(blanced growth) 의 시기
+• 지수 생장 속도
+dX / dt = μX, X = X0 at t=0
+ln X/X0 = μt, X = X0eμt
+
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,17 +30,11 @@ public class Flower : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
-       if(time <= 5)
-        {
-            ScaleUp();
-        }
-    }
 
-    void ScaleUp()
-    {
         MyScale_x = Mathf.Lerp(0, 1, time / 5);
         MyScale_y = Mathf.Lerp(0, 1, time / 5);
 
-        transform.localScale = new Vector3(MyScale_x, MyScale_y, transform.localScale.z);
+        if (time < 1.7)
+            transform.localScale = new Vector3(MyScale_x, MyScale_y, transform.localScale.z);
     }
 }
