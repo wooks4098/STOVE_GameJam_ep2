@@ -168,6 +168,7 @@ public class ColorPicker : MonoBehaviour
 
     public void SetColor()
     {
+        CalculateWheel();
         HslColor hslColor = new HslColor(lastHSL.H, lastHSL.S, l);
         System.Drawing.Color color = hslColor.ToRgbColor();
         selectedColor = new UnityEngine.Color(color.R / 256f, color.G / 256f, color.B / 256f, 1f);
@@ -179,6 +180,7 @@ public class ColorPicker : MonoBehaviour
 
     public void SetColor(Point point)
     {
+        CalculateWheel();
         double dx;
         double dy;
         double angle;
@@ -250,7 +252,7 @@ public class ColorPicker : MonoBehaviour
 
     private void Update()
     {
-        CalculateWheel();
+        //CalculateWheel();
     }
 
     protected float GetRadius(PointF centerPoint)

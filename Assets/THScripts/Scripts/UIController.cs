@@ -9,9 +9,15 @@ public class UIController : MonoBehaviour
     [SerializeField]
     private GameObject cultivate;
     [SerializeField]
+    private GameObject culrivatePressed;
+    [SerializeField]
     private GameObject temperature;
     [SerializeField]
+    private GameObject temperaturePressed;
+    [SerializeField]
     private GameObject humidity;
+    [SerializeField]
+    private GameObject humidityPressed;
     [SerializeField]
     private GameObject common;
 
@@ -46,6 +52,7 @@ public class UIController : MonoBehaviour
         }
 
         cultivate.SetActive(toggle);
+        culrivatePressed.SetActive(toggle);
 
         CheckMain();
     }
@@ -58,7 +65,8 @@ public class UIController : MonoBehaviour
         }
 
         temperature.SetActive(toggle);
-        
+        temperaturePressed.SetActive(toggle);
+
         CheckMain();
     }
 
@@ -70,6 +78,7 @@ public class UIController : MonoBehaviour
         }
 
         humidity.SetActive(toggle);
+        humidityPressed.SetActive(toggle);
 
         CheckMain();
     }

@@ -64,20 +64,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c07ae0ec294d94498b839b8c21ce6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Number: 1
+  Number: -1
   isTrunk: 0
-  Parents_Scale_x: 0.8
-  Parents_Scale_y: 0.8
-  Scale_x_Growth: 0.8
-  Scale_y_Growth: 0.8
-  Growth_time: 3
-  Parents_Pos_x: 0
-  Parents_Pos_y: 1
-  Pos_x_Growth: 0
-  Pos_y_Growth: 1.1
+  Parents_Scale_x: -1
+  Parents_Scale_y: -1
+  Scale_x_Growth: -1
+  Scale_y_Growth: -1
+  Growth_time: -1
+  MyPos_y: -1
+  Parents_Pos_x: -1
+  Parents_Pos_y: -1
+  Pos_x_Growth: -1
+  Pos_y_Growth: -1
   sprites:
   - {fileID: 21300000, guid: 036ac1572b8e4a542915938c69564458, type: 3}
   - {fileID: 21300000, guid: 00a5b0ab0a4d5d3489392b9894509355, type: 3}
+  - {fileID: 21300000, guid: 88a188e0bcec47944a7c77e6882e34c6, type: 3}
+  - {fileID: 21300000, guid: 4b5b793569a8d434fa941d1765bf4a40, type: 3}
   PreFab: {fileID: 4596303224224415761}
   UpTrunk: {fileID: 0}
   time: 0

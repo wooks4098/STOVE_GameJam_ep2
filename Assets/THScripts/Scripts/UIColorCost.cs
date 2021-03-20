@@ -13,11 +13,22 @@ public class UIColorCost : MonoBehaviour
     private Text pixelCountText;
     [SerializeField]
     private Text costText;
+    [SerializeField]
+    private Text currentCostText;
 
     void Update()
     {
-        costText.text = "Cost : " + chalet.Cost.ToString();
         colorCountText.text = "Color : " + chalet.SelectedColorCount.ToString();
         pixelCountText.text = "Pixel : " + chalet.PixelCount.ToString();
+        costText.text = "Cost required for apply : " + chalet.Cost.ToString();
+        currentCostText.text = "Current Cost : " + UserData.Instance.GetUserData.Cost;
+        if(UserData.Instance.GetUserData.Cost < chalet.Cost)
+        {
+            currentCostText.color = Color.red;
+        }
+        else
+        {
+            currentCostText.color = Color.white;
+        }
     }
 }
