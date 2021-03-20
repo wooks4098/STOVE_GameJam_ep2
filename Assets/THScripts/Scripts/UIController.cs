@@ -20,6 +20,8 @@ public class UIController : MonoBehaviour
     private GameObject humidityPressed;
     [SerializeField]
     private GameObject common;
+    [SerializeField]
+    private GameObject petriDish;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +31,7 @@ public class UIController : MonoBehaviour
         Cultivate(false);
         Temperature(false);
         Humidity(false);
+        
     }
 
     public void Main(bool toggle)
@@ -53,6 +56,7 @@ public class UIController : MonoBehaviour
 
         cultivate.SetActive(toggle);
         culrivatePressed.SetActive(toggle);
+        petriDish.SetActive(toggle);
 
         CheckMain();
     }
