@@ -47,7 +47,7 @@ public class Col_Group : MonoBehaviour
         if (count == 1)
         {
             loadCsv();
-            init = Initialize(new System.Random().Next(0, 30));       //100 알악세포 정보 들고오기
+            init = Initialize(new System.Random().Next(0, 89));       //100 알악세포 정보 들고오기
             count++;
         }
         Creat_Trunk();

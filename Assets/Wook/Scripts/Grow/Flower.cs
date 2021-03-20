@@ -23,9 +23,11 @@ public class Flower : MonoBehaviour
     void Update()
     {
         time += Time.deltaTime;
+
         MyScale_x = Mathf.Lerp(0, 1, time / 5);
         MyScale_y = Mathf.Lerp(0, 1, time / 5);
 
-        transform.localScale = new Vector3(MyScale_x, MyScale_y, transform.localScale.z);
+        if (time < 1.7)
+            transform.localScale = new Vector3(MyScale_x, MyScale_y, transform.localScale.z);
     }
 }
