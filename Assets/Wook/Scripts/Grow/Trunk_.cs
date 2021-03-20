@@ -123,7 +123,6 @@ public class Trunk_ : MonoBehaviour
         //스케일
         Scale_x_Growth = Mathf.Pow(_Scale_x_Growth, (Number - 1));
         Scale_y_Growth = Mathf.Pow(_Scale_y_Growth, (Number - 1));
-
         //포지션 Y값
         MyPos_y = 1 * (Number - 1) * Mathf.Pow(_Pos_y_Growth, (Number - 1));
 

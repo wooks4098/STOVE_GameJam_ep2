@@ -42,12 +42,10 @@ public class Col_Group : MonoBehaviour
 
     private void Awake()
     {
-        if (CSVReader.count == 1)
-        {
-            loadCsv();
-            init = Initialize(9);       //100 알악세포 정보 들고오기
-            CSVReader.count++;
-        }
+        loadCsv();
+        init = Initialize(9);       //100 알악세포 정보 들고오기
+        //CSVReader.count++;
+
         Creat_Trunk();
         Diffusion_Time = 3f;
         transform.localPosition = new Vector3(0, 0, 0);
