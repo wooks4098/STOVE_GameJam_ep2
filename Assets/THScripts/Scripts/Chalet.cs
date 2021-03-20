@@ -22,6 +22,9 @@ public class Chalet : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
     [SerializeField]
     private ColorPicker colorPicker;
 
+    [SerializeField]
+    private GameObject applyButton;
+
     private int selectedColorCount;
     public int SelectedColorCount
     {
@@ -91,13 +94,36 @@ public class Chalet : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
 
     public void Apply()
     {
-        
+        if (UserData.Instance == null)
+            return;
+
+        if(UserData.Instance.GetUserData.Cost >= cost)
+            UserData.Instance.GetUserData.Cost -= cost;
+
+        Init();
     }
 
-    public void AddCost()
+    private void Update()
     {
-        
+        if (UserData.Instance == null)
+            return;
+
+        if (UserData.Instance.GetUserData.Cost >= cost)
+        {
+            applyButton.SetActive(true);
+        }
+        else
+        {
+            applyButton.SetActive(false);
+        }
+
+        if(pixelCount == 0 && selectedColorCount == 0)
+        {
+            applyButton.SetActive(false);
+        }
     }
+
+
 
     private List<Vector2Int> pressedIndexes;
     private bool isPressed = false;
