@@ -54,17 +54,21 @@ public class addCellEvent : MonoBehaviour
         double baseNumber = Math.Log(rt.rect.height * target.transform.localScale.y) / rt.rect.height * target.transform.localScale.y;
 
         System.Random rnd = new System.Random();
-        jo.AddField("type", data[i]["Col_Type_Color"].ToString() + "_" + data[i]["Col_Type_Karma"].ToString() );
+        jo.AddField("type", data[i]["Col_Type_Color"].ToString() + "_" + data[i]["Col_Type_Karma"].ToString() );        //세포명
         def_cnt = int.Parse(data[i]["Trunk_In_Col"].ToString());
-        jo.AddField("def_cnt", int.Parse(data[i]["Trunk_In_Col"].ToString()));
-        jo.AddField("flowerInColTrunkcondition", int.Parse(data[i]["Flower_In_Col_Trunkcondition"].ToString()));
-        jo.AddField("flowerInColRate", data[i]["Flower_In_Col_Rate"].ToString());
+        jo.AddField("def_cnt", int.Parse(data[i]["Trunk_In_Col"].ToString()));                                          //이 세포줄기에서 생길수 있는 줄기갯수
+        jo.AddField("flowerInColTrunkcondition", int.Parse(data[i]["Flower_In_Col_Trunkcondition"].ToString()));        // 꽃이 생성될 수 있는 Trunk_Lv의 조건
+        jo.AddField("flowerInColRate", data[i]["Flower_In_Col_Rate"].ToString());                                       //꽃이 생성될 확률
         jo.AddField("chgX", (rnd.NextDouble() * (Convert.ToDouble(data[i]["Trunk_Scale_X_Growth_Max"].ToString()) - Convert.ToDouble(data[i]["Trunk_Scale_X_Growth_Min"].ToString())) + Convert.ToDouble(data[i]["Trunk_Scale_X_Growth_Min"].ToString())).ToString());
+                //x축으로 늘어날 최대 크기
         jo.AddField("chgY", (rnd.NextDouble() * (Convert.ToDouble(data[i]["Trunk_Scale_Y_Growth_Max"].ToString()) - Convert.ToDouble(data[i]["Trunk_Scale_Y_Growth_Min"].ToString())) + Convert.ToDouble(data[i]["Trunk_Scale_Y_Growth_Min"].ToString())).ToString());
+                //y축으로 늘어날 최대 크기
         jo.AddField("posY", (rnd.NextDouble() * (Convert.ToDouble(data[i]["Trunk_Build_Position_Max"].ToString()) - Convert.ToDouble(data[i]["Trunk_Build_Position_Min"].ToString())) + Convert.ToDouble(data[i]["Trunk_Build_Position_Min"].ToString())).ToString());
-        jo.AddField("smalltrunkTrunkLvMax", data[i]["Smalltrunk_Trunk_Lv_Max"].ToString());
+                //새로운 트렁크가 붙을 위치
+        jo.AddField("smalltrunkTrunkLvMax", data[i]["Smalltrunk_Trunk_Lv_Max"].ToString());                             //작은 브랜치가 붙을수있는 최대 부모트렁크의 높이
         jo.AddField("smallTrunkCount", (rnd.NextDouble() * (Convert.ToDouble(data[i]["Smalltrunk_Max"].ToString()) - Convert.ToDouble(data[i]["Smalltrunk_Min"].ToString())) + Convert.ToDouble(data[i]["Smalltrunk_Min"].ToString())).ToString());
-        jo.AddField("smalltrunkRate", data[i]["Smalltrunk_Rate"].ToString());
+                //한 트렁크에 붙을 최대 브랜치의 갯수
+        jo.AddField("smalltrunkRate", data[i]["Smalltrunk_Rate"].ToString());                                           //작은 브랜치가 붙을 확률
 
         return jo;
         /*newObject.transform.position = new Vector3(target.transform.position.x, target.transform.position.y + baseNumber * chgY + count * chgY, target.transform.position.z);

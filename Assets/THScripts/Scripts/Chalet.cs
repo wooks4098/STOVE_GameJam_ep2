@@ -27,8 +27,23 @@ public class Chalet : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
     {
         get { return selectedColorCount; }
     }
+
+    private int cost;
+    public int Cost
+    {
+        get { return cost; }
+    }
+    private int pixelCount;
+    public int PixelCount
+    {
+        get { return pixelCount; }
+    }
+
     private Color[,] colors;
     private Color lastColor;
+
+    
+
     private void OnEnable()
     {
         Init();
@@ -63,6 +78,8 @@ public class Chalet : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
             }
         }
         selectedColorCount = 0;
+        cost = 0;
+        pixelCount = 0;
         lastColor = Color.clear;
         isPressed = false;
     }
@@ -73,6 +90,11 @@ public class Chalet : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
     }
 
     public void Apply()
+    {
+        
+    }
+
+    public void AddCost()
     {
         
     }
@@ -118,7 +140,6 @@ public class Chalet : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
 
             if (pressedIndexes.Contains(new Vector2Int(x, y)))
             {
-                Debug.Log("sdsd");
                 return;
             }
 
@@ -161,13 +182,27 @@ public class Chalet : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
             newColors[index] = newColor;
 
 
-            if (lastColor != colorPicker.SelectedColor)
+            if (lastColor == Color.clear)
             {
-                lastColor = colorPicker.SelectedColor;
+                pixelCount = 0;
+            }
+            else if(lastColor != colorPicker.SelectedColor)
+            {
                 selectedColorCount++;
+                pixelCount = 0;
             }
 
             SetPixel(newColors);
+            pixelCount++;
+            int newCost = (int)(Mathf.Pow(1 + selectedColorCount, 1.4f) * (50 * Mathf.Pow(1.2f, pixelCount)));
+            Debug.Log(selectedColorCount + " | " + "1.4f" + " | " + "50" + " | " + "1.2f" + " | " + pixelCount + " | " + newCost);
+            cost += newCost;
+
+            if (lastColor != colorPicker.SelectedColor)
+            {
+                lastColor = colorPicker.SelectedColor;
+            }
+
             StartCoroutine(SpreadColor(new Vector2Int(x, y)));
         }
     }
@@ -261,7 +296,7 @@ public class Chalet : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
             {
                 continue;
             }
-
+            
             newColor = new Color(Mathf.Max(0.3f, newColor.r), Mathf.Max(0.3f, newColor.g), Mathf.Max(0.3f, newColor.b), 1);
             newColors[current.x + current.y * width] = newColor;
 
