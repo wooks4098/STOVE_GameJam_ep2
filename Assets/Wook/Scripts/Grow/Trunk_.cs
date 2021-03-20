@@ -28,11 +28,9 @@ public class Trunk_ : MonoBehaviour
     public float Pos_y_Growth;
     [Space(10f)]
 
-
-
-
-
     public float time;
+
+    public static float start_time;
 
     public GameObject Edge;
     public GameObject Flower;
@@ -60,12 +58,12 @@ public class Trunk_ : MonoBehaviour
         }
         else
         {
-            Col_Group.h = transform.GetComponentInChildren<SpriteRenderer>().bounds.extents.y;
-            if (IsGrowingUp)
+            if(IsGrowingUp)
             {
                 if(IsFlower)
                 {
                     Flower.SetActive(true);
+                    start_time = Time.deltaTime;        //꽃이 켜지면 시작시간을 측정한다.
                 }
                 else
                 {
@@ -115,18 +113,17 @@ public class Trunk_ : MonoBehaviour
     }
 
     //Col에 의해 Trunnk가 생성될 때 Col의 유전 성장률을 받아오는 함수
-    public void SetChildData(int _Number, float _Scale_x_Growth, float _Scale_y_Growth, float _Growth_time, float _Pos_y_Growth, int _Flower_Add_Min_Level, int _Flower_Add_Rate, float _Parent_Height)
+    public void SetChildData(int _Number, float _Scale_x_Growth, float _Scale_y_Growth, float _Growth_time, float _Pos_y_Growth, int _Flower_Add_Min_Level, int _Flower_Add_Rate)
     {
 
         Number = _Number;
-        
-        //포지션 Y값
-        MyPos_y = MyPos_y + _Parent_Height + _Pos_y_Growth;
+
 
         //스케일
-        Scale_x_Growth = _Scale_x_Growth * Mathf.Pow(0.8f, (Number));
-        Scale_y_Growth = _Scale_y_Growth * Mathf.Pow(0.8f, (Number));
-
+        Scale_x_Growth = Mathf.Pow(_Scale_x_Growth, (Number - 1));
+        Scale_y_Growth = Mathf.Pow(_Scale_y_Growth, (Number - 1));
+        //포지션 Y값
+        MyPos_y = 1 * (Number - 1) * Mathf.Pow(_Pos_y_Growth, (Number - 1));
 
         Growth_time = _Growth_time;
 
