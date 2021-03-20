@@ -43,7 +43,7 @@ public class Trunk_ : MonoBehaviour
         Camera = GameObject.FindWithTag("MainCamera");
         IsGrowingUp = true;
         IsFlower = false;
-        transform.localPosition = new Vector3(0, 0, 0);
+        //transform.localPosition = new Vector3(0, 0, 0);
     }
 
     void Update()
@@ -95,7 +95,7 @@ public class Trunk_ : MonoBehaviour
         //MyPos_x = Parents_Pos_x * Pos_x_Growth;
         //MyPos_y = Parents_Pos_y * Pos_y_Growth;
         
-        transform.position = new Vector3(MyPos_x, MyPos_y, 0);
+        transform.localPosition = new Vector3(0, MyPos_y, 0);
     }
 
     void Scale_Growth()
