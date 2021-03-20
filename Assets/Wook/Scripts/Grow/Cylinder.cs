@@ -39,6 +39,16 @@ public class Cylinder : MonoBehaviour
 
     public void PlayCol(Color[,] colors)
     {
+        if(createdCols != null)
+        {
+            foreach(GameObject deletedObject in createdCols)
+            {
+                Destroy(deletedObject);
+            }
+        }
+
+        createdCols.Clear();
+
         for(int i = 0; i < colors.GetLength(0); i++)
         {
             for (int j = 0; j < colors.GetLength(0); j++)
@@ -48,11 +58,13 @@ public class Cylinder : MonoBehaviour
                     Point newPos;
                     newPos.x = j;
                     newPos.y = i;
-                    Creat_Col(newPos);
+                    Creat_Col(newPos, colors[i,j]);
                 }
             }
         }
     }
+
+    private List<GameObject> createdCols = new List<GameObject>();
 
     public void Creat_Col(Point pos, Color color)
     {
@@ -67,6 +79,10 @@ public class Cylinder : MonoBehaviour
         newObject.GetComponentInChildren<Col_Group>().InitCol(pos.x, pos.y, color);
         newObject.transform.localPosition = new Vector3(-pos.x, 0, 0);
 
+        if (createdCols == null)
+            createdCols = new List<GameObject>();
+
+        createdCols.Add(newObject);
     }
 
     public void Creat_Col(Point pos)
@@ -81,6 +97,11 @@ public class Cylinder : MonoBehaviour
         newObject.GetComponentInChildren<Col_Group>().SetPos(pos.x, pos.y);
         newObject.transform.localPosition = new Vector3(-pos.x, 0, 0);
 
+
+        if (createdCols == null)
+            createdCols = new List<GameObject>();
+
+        createdCols.Add(newObject);
     }
 
 
