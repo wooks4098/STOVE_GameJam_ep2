@@ -33,6 +33,12 @@ public class Col_Group : MonoBehaviour
     List<Dictionary<string, object>> data;
     GameObject newObject;
 
+    void Start()
+    {
+        loadCsv();
+        init = Initialize(0);       //100 알악세포 정보 들고오기
+    }
+
     private void Awake()
     {
         Creat_Trunk();
@@ -112,11 +118,6 @@ public class Col_Group : MonoBehaviour
             return;
 
         newObject = Instantiate(PreFab);
-        if (Trunk_Count == 1)
-        {
-            loadCsv();
-            init = Initialize(0);       //100 알악세포 정보 들고오기
-        }
         newObject.GetComponent<Trunk_>().SetChildData(Trunk_Count
             , Growth_Scale_x, Growth_Scale_y, Growth_Time
             , Growth_Position_y, Flower_Add_Min_Level, Flower_Add_Rate);
@@ -148,8 +149,7 @@ public class Col_Group : MonoBehaviour
     JSONObject Initialize(int i)
     {
         JSONObject jo = new JSONObject(JSONObject.Type.OBJECT);
-        RectTransform rt = (RectTransform)PreFab.transform;
-        float baseNumber = Convert.ToSingle(Math.Log(rt.rect.height * PreFab.transform.localScale.y) / rt.rect.height * PreFab.transform.localScale.y);
+        float baseNumber = Convert.ToSingle(Math.Log(PreFab.transform.localScale.y) / PreFab.transform.localScale.y);
 
         System.Random rnd = new System.Random();
         jo.AddField("type", data[i]["Col_Type_Color"].ToString() + "_" + data[i]["Col_Type_Karma"].ToString());        //세포명
