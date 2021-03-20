@@ -66,7 +66,7 @@ public class Chalet : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
                     continue;
                 }
 
-                defaultColors[i + j * width] = Color.white;
+                defaultColors[i + j * width] = Color.clear;
             }
         }
 
@@ -201,6 +201,12 @@ public class Chalet : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
 
             int index = x + y * width;
             pressedIndexes.Add(new Vector2Int(x, y));
+
+            if(newColors[index] == Color.clear)
+            {
+                newColors[index] = Color.white;
+            }
+
             Color newColor = (newColors[index] * colorPicker.SelectedColor) / 1f;
             
 
@@ -314,7 +320,10 @@ public class Chalet : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
 
             }
 
-            
+            if (newColors[current.x + current.y * width] == Color.clear)
+            {
+                newColors[current.x + current.y * width] = Color.white;
+            }
 
             Color newColor = (newColors[current.x + current.y * width] * colorPicker.SelectedColor) / 1f;
             Color prevColor = new Color(newColors[current.x + current.y * width].r / colorPicker.SelectedColor.r, newColors[current.x + current.y * width].g / colorPicker.SelectedColor.g, newColors[current.x + current.y * width].b / colorPicker.SelectedColor.b, 1);
