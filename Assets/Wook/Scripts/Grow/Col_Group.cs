@@ -33,6 +33,7 @@ public class Col_Group : MonoBehaviour
     List<Dictionary<string, object>> data;
     GameObject newObject;
 
+    
 
     void Start()
     {
@@ -41,10 +42,11 @@ public class Col_Group : MonoBehaviour
 
     private void Awake()
     {
-        if (Trunk_Count == 1)
+        if (CSVReader.count == 1)
         {
             loadCsv();
             init = Initialize(9);       //100 알악세포 정보 들고오기
+            CSVReader.count++;
         }
         Creat_Trunk();
         Diffusion_Time = 3f;
