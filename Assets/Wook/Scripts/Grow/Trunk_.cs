@@ -68,7 +68,7 @@ public class Trunk_ : MonoBehaviour
                 }
                 else
                     Edge.SetActive(false);
-                transform.parent.GetComponent<Col_Group>().Creat_Trunk();
+                transform.GetComponentInParent<Col_Group>().Creat_Trunk();
                 IsGrowingUp = false;
             }
 
@@ -110,7 +110,7 @@ public class Trunk_ : MonoBehaviour
         transform.localScale = new Vector3(MyScale_x, MyScale_y, transform.localScale.z);
 
     }
-    public void SetChildData(int _Number, float _Scale_x_Growth, float _Scale_y_Growth, float _Growth_time, float _Pos_y_Growth)
+    public void SetChildData(int _Number, float _Scale_x_Growth, float _Scale_y_Growth, float _Growth_time, float _Pos_y_Growth, int _Flower_Add_Min_Level, int _Flower_Add_Rate)
     {
 
         Number = _Number;
@@ -125,7 +125,11 @@ public class Trunk_ : MonoBehaviour
         Scale_x_Growth = Mathf.Pow(_Scale_x_Growth, (Number - 1));
         Scale_y_Growth = Mathf.Pow(_Scale_y_Growth, (Number - 1));
         Growth_time = _Growth_time;
-        if (Number == 7)
+
+        System.Random rnd = new System.Random();
+        int rndN = rnd.Next(100);
+        Debug.Log(rndN + ":" + _Flower_Add_Rate);
+        if (Number == _Flower_Add_Min_Level - 1 && rndN < _Flower_Add_Rate)
             IsFlower = true;
 
         MyPos_y = 1 * (Number - 1) * Mathf.Pow(_Pos_y_Growth, (Number - 1));
