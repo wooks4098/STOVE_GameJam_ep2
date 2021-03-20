@@ -60,7 +60,8 @@ public class Trunk_ : MonoBehaviour
         }
         else
         {
-            if(IsGrowingUp)
+            Col_Group.h = transform.GetComponentInChildren<SpriteRenderer>().bounds.extents.y;
+            if (IsGrowingUp)
             {
                 if(IsFlower)
                 {
@@ -114,14 +115,13 @@ public class Trunk_ : MonoBehaviour
     }
 
     //Col에 의해 Trunnk가 생성될 때 Col의 유전 성장률을 받아오는 함수
-    public void SetChildData(int _Number, float _Scale_x_Growth, float _Scale_y_Growth, float _Growth_time, float _Pos_y_Growth, int _Flower_Add_Min_Level, int _Flower_Add_Rate)
+    public void SetChildData(int _Number, float _Scale_x_Growth, float _Scale_y_Growth, float _Growth_time, float _Pos_y_Growth, int _Flower_Add_Min_Level, int _Flower_Add_Rate, float _Parent_Height)
     {
 
         Number = _Number;
-        float h = transform.GetComponent<RectTransform>().rect.height;
-
+        
         //포지션 Y값
-        MyPos_y = MyPos_y + (Scale_y_Growth * h * Number) + _Pos_y_Growth;
+        MyPos_y = MyPos_y + _Parent_Height + _Pos_y_Growth;
 
         //스케일
         Scale_x_Growth = _Scale_x_Growth * Mathf.Pow(0.8f, (Number));
