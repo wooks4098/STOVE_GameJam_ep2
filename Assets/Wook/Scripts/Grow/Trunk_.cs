@@ -133,7 +133,7 @@ public class Trunk_ : MonoBehaviour
         System.Random rnd = new System.Random();
         int rndN = rnd.Next(100);
         Debug.Log(rndN + ":" + _Flower_Add_Rate);
-        if (Number == _Flower_Add_Min_Level - 1 && rndN < _Flower_Add_Rate)
+        if (Number >= _Flower_Add_Min_Level - 1 && rndN < _Flower_Add_Rate)
             IsFlower = true;
 
         MyPos_y = 1 * (Number - 1) * Mathf.Pow(_Pos_y_Growth, (Number - 1));
