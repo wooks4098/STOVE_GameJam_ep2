@@ -33,21 +33,23 @@ public class Col_Group : MonoBehaviour
     List<Dictionary<string, object>> data;
     GameObject newObject;
 
+
     void Start()
+    {
+        
+    }
+
+    private void Awake()
     {
         if (Trunk_Count == 1)
         {
             loadCsv();
             init = Initialize(9);       //100 알악세포 정보 들고오기
         }
-    }
-
-    private void Awake()
-    {
         Creat_Trunk();
         Diffusion_Time = 3f;
         transform.localPosition = new Vector3(0, 0, 0);
-
+        
     }
 
     private void Update()
