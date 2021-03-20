@@ -82,7 +82,7 @@ public class Chalet : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
                 colors[x, y] = Color.clear;
             }
         }
-        selectedColorCount = 0;
+        selectedColorCount = 1;
         cost = 0;
         pixelCount = 0;
         lastColor = Color.clear;
@@ -234,8 +234,8 @@ public class Chalet : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
 
             SetPixel(newColors);
             pixelCount++;
-            int newCost = (int)(Mathf.Pow(1 + selectedColorCount, 1.4f) * (50 * Mathf.Pow(1.2f, pixelCount)));
-            Debug.Log(selectedColorCount + " | " + "1.4f" + " | " + "50" + " | " + "1.2f" + " | " + pixelCount + " | " + newCost);
+            int newCost = (int)(Mathf.Pow(1 + selectedColorCount, 1.08f) * (5 * Mathf.Pow(1.02f, pixelCount)));
+            Debug.Log(selectedColorCount + " | " + "1.08f" + " | " + "5" + " | " + "1.02f" + " | " + pixelCount + " | " + newCost);
             cost += newCost;
 
             if (lastColor != colorPicker.SelectedColor)

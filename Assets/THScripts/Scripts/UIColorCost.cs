@@ -18,10 +18,10 @@ public class UIColorCost : MonoBehaviour
 
     void Update()
     {
-        colorCountText.text = "Color : " + chalet.SelectedColorCount.ToString();
-        pixelCountText.text = "Pixel : " + chalet.PixelCount.ToString();
-        costText.text = "Cost required for apply : " + chalet.Cost.ToString();
-        currentCostText.text = "Current Cost : " + UserData.Instance.GetUserData.Cost;
+        colorCountText.text = "배양액 종류 : " + chalet.SelectedColorCount.ToString();
+        pixelCountText.text = "사용량 : " + chalet.PixelCount.ToString();
+        costText.text = "필요한 연구점수 : " + chalet.Cost.ToString();
+        currentCostText.text = "현재 연구점수 : " + UserData.Instance.GetUserData.Cost;
         if(UserData.Instance.GetUserData.Cost < chalet.Cost)
         {
             currentCostText.color = Color.red;
