@@ -1,11 +1,4 @@
-﻿— 균형생장(blanced growth) 의 시기
-• 지수 생장 속도
-dX / dt = μX, X = X0 at t=0
-ln X/X0 = μt, X = X0eμt
-
-
-
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
