@@ -34,7 +34,8 @@ public class Col_Group : MonoBehaviour
     List<Dictionary<string, object>> data;
     GameObject newObject;
 
-    
+    public static float h = 0.0f;
+
 
     void Start()
     {
@@ -129,7 +130,7 @@ public class Col_Group : MonoBehaviour
 
         newObject.GetComponent<Trunk_>().SetChildData(Trunk_Count
             , Growth_Scale_x, Growth_Scale_y, Growth_Time
-            , Growth_Position_y, Flower_Add_Min_Level, Flower_Add_Rate); //Trunk에 Col유전성장률 주기
+            , Growth_Position_y, Flower_Add_Min_Level, Flower_Add_Rate, h); //Trunk에 Col유전성장률 주기
         newObject.transform.parent = gameObject.transform;
         newObject.transform.localPosition = new Vector3(0, 0, 0);
         Trunk_Count++;
