@@ -19,7 +19,9 @@ public class Follow_Camera : MonoBehaviour
         Quaternion q = Quaternion.LookRotation(vec);
 
         transform.rotation = q;
-       
+        var rot = transform.rotation.eulerAngles;
+
+        transform.rotation = Quaternion.Euler(0.0f, rot.y, 0.0f);
 
         //transform.rotation = Quaternion.Euler(0, q.y,0);
     }

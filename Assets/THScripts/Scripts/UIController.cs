@@ -1,0 +1,81 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class UIController : MonoBehaviour
+{
+    [SerializeField]
+    private GameObject main;
+    [SerializeField]
+    private GameObject cultivate;
+    [SerializeField]
+    private GameObject temperature;
+    [SerializeField]
+    private GameObject humidity;
+    [SerializeField]
+    private GameObject common;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        Common(true);
+        Main(true);
+        Cultivate(false);
+        Temperature(false);
+        Humidity(false);
+    }
+
+    public void Main(bool toggle)
+    {
+        main.SetActive(toggle);
+    }
+
+    public void CheckMain()
+    {
+        if(!cultivate.activeSelf && !temperature.activeSelf && !humidity.activeSelf)
+        {
+            Main(true);
+        }
+    }
+
+    public void Cultivate(bool toggle)
+    {
+        if(main.activeSelf)
+        {
+            Main(false);
+        }
+
+        cultivate.SetActive(toggle);
+
+        CheckMain();
+    }
+
+    public void Temperature(bool toggle)
+    {
+        if (main.activeSelf)
+        {
+            Main(false);
+        }
+
+        temperature.SetActive(toggle);
+        
+        CheckMain();
+    }
+
+    public void Humidity(bool toggle)
+    {
+        if (main.activeSelf)
+        {
+            Main(false);
+        }
+
+        humidity.SetActive(toggle);
+
+        CheckMain();
+    }
+
+    public void Common(bool toggle)
+    {
+        common.SetActive(toggle);
+    }
+}

@@ -2,82 +2,149 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+enum SPRITE { Trunk, Edge};
+
 public class Trunk : MonoBehaviour
 {
-    private float Scale_x;
-    public float Scale_x_max;
-    private float Scale_y;
-    public float Scale_y_max;
-    public float Pos_x;
-    public float Pos_y;
-    public float Growth_time;
+    //세대
+    public int Number;
 
-    public float time;
+    public bool isTrunk;
+
+    //스케일값
+    private float MyScale_x;
+    private float MyScale_y;
+    [Header("스케일값")]
+    public float Parents_Scale_x;
+    public float Parents_Scale_y;
+    public float Scale_x_Growth;
+    public float Scale_y_Growth;
+    public float Growth_time;
+    [Space(10f)]
+    //포지션값
+    private float MyPos_x;
+    [SerializeReference]
+    private float MyPos_y;
+    [Header("포지션 값")]
+    public float Parents_Pos_x;
+    public float Parents_Pos_y;
+    public float Pos_x_Growth;
+    public float Pos_y_Growth;
+    [Space(10f)]
+
+
+    public Sprite[] sprites;
+
+
+    //위로 자식
+    public GameObject PreFab;
+    public GameObject UpTrunk;
+    //작은 자식
+    GameObject[] Small_Trunk;
+
+
+    [SerializeReference]
+    private float time;
     GameObject Camera;
 
     private void Awake()
     {
         time = 0;
+        //Pos_Growth();
+
+        if (Number == 0)
+            isTrunk = true;
+        else
+            isTrunk = false;
+
+        //스프라이트 조정
+        if (isTrunk)
+            transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = sprites[(int)SPRITE.Trunk];
+
+        if (isTrunk)
+            Instantiate(PreFab, transform.position, transform.rotation).transform.SetParent(transform);
+
+        //transform.GetChild(0).GetComponent<Trunk>().SetChildData()
+
+
         Camera = GameObject.FindWithTag("MainCamera");
 
     }
-    void Start()
+    private void Start()
     {
-        //StartCoroutine(Grow_y());
-        //StartCoroutine(Grow_x());
-       
-
+        Pos_Growth();
     }
-
 
     void Update()
     {
-        Look_Camera();
-        time += Time.deltaTime;
-        if(time <Growth_time)
-        {
-            Scale_y = Mathf.Lerp(0, Scale_y_max, time/ Growth_time);
-            Scale_x = Mathf.Lerp(0, Scale_x_max, time/ Growth_time) ;
-            transform.localScale = new Vector3(Scale_y, Scale_x, transform.localScale.z);
-        }
+        Scale_Growth();
+        Pos_Growth();
+        //transform.GetComponentInChildren<Trunk>().Parents_Scale_y = gameObject.GetComponent<RectTransform>().rect.height;
     }
 
+    private void LateUpdate()
+    {
+        Look_Camera();
+
+    }
+
+    public void SetChildData(int _Number, float _Parents_Scale_x, float _Parents_Scale_y, float _Scale_x_Growth, float _Scale_y_Growth, float _Growth_time, 
+        float _Parents_Pos_x, float _Parents_Pos_y, float _Pos_x_Growth, float _Pos_y_Growth)
+    {
+
+        Number = _Number;
+        Parents_Scale_x = _Parents_Scale_x;
+        Parents_Scale_y = _Parents_Scale_y;
+        Scale_x_Growth = _Scale_x_Growth;
+        Scale_y_Growth = _Scale_y_Growth;
+        Growth_time = _Growth_time;
+        Parents_Pos_x = _Parents_Pos_x;
+        Parents_Pos_y = _Parents_Pos_y;
+        Pos_x_Growth = _Pos_x_Growth;
+        Pos_y_Growth = _Pos_y_Growth;
+   
+    }
+
+
+    void Pos_Growth()
+    {
+        MyScale_x = 0;
+        MyScale_y = 0;
+        //if(Number != 0)
+        //    MyScale_y = transform.root.GetComponent<RectTransform>().rect.height;
+        MyPos_x = Parents_Pos_x * Pos_x_Growth;
+        MyPos_y = Parents_Pos_y * Pos_y_Growth;
+
+        transform.position = new Vector3(MyPos_x, MyPos_y, 0);
+    }
+
+    void Scale_Growth()
+    {
+        time += Time.deltaTime;
+
+
+
+        if (time < Growth_time)
+        {
+            MyScale_x = Mathf.Lerp(0, Parents_Scale_x * Scale_x_Growth, time / Growth_time);
+            MyScale_y = Mathf.Lerp(0, Parents_Scale_y * Scale_y_Growth, time / Growth_time);
+            transform.localScale = new Vector3(MyScale_x, MyScale_y, transform.localScale.z);
+        }
+    }
+    //스프라이트가 카메라 바라보기
     void Look_Camera()
     {
         Vector3 vec = Camera.transform.position - transform.position;
 
-        
         Quaternion q = Quaternion.LookRotation(vec);
-
         transform.rotation = q;
+        var rot = transform.rotation.eulerAngles;
+
+        transform.rotation = Quaternion.Euler(0.0f, rot.y, 0.0f);
     }
+    
+    
 
-    //IEnumerator Grow_x()
-    //{
-    //    float time = 0;
-    //    while(Scale_x < Scale_x_max)
-    //    {
-    //        time += Time.deltaTime / Growth_Speed;
-    //        Scale_x = Mathf.Lerp(0, Scale_x_max, time);
-    //        transform.localScale = new Vector3(Scale_x, transform.localScale.y, transform.localScale.z);
-    //    }
 
-    //    yield return null;
-    //}
-
-    //IEnumerator Grow_y()
-    //{
-    //    float time = 0;
-    //    float TimeCheck = Growth_time;
-    //    float Scale_y = 0;
-    //    while (Scale_y < Scale_y_max)
-    //    {
-    //        time += Time.deltaTime / TimeCheck;
-    //        Scale_y = Mathf.Lerp(0, Scale_x_max, time);
-    //        transform.localScale = new Vector3(transform.localScale.x, Scale_y, transform.localScale.z);
-    //    }
-
-    //    yield return null;
-    //}
 
 }
