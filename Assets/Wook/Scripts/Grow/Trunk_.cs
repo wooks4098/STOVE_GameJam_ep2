@@ -43,7 +43,7 @@ public class Trunk_ : MonoBehaviour
         Camera = GameObject.FindWithTag("MainCamera");
         IsGrowingUp = true;
         IsFlower = false;
-        
+        transform.localPosition = new Vector3(0, 0, 0);
     }
 
     void Update()
@@ -67,9 +67,13 @@ public class Trunk_ : MonoBehaviour
                     Flower.SetActive(true);
                 }
                 else
+                {
                     Edge.SetActive(false);
-                transform.GetComponentInParent<Col_Group>().Creat_Trunk();
-                IsGrowingUp = false;
+
+                    transform.GetComponentInParent<Col_Group>().Creat_Trunk();//Creat_Trunk();
+                    IsGrowingUp = false;
+                }
+
             }
 
         }
