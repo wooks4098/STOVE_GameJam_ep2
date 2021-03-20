@@ -35,8 +35,11 @@ public class Col_Group : MonoBehaviour
 
     void Start()
     {
-        loadCsv();
-        init = Initialize(0);       //100 알악세포 정보 들고오기
+        if (Trunk_Count == 1)
+        {
+            loadCsv();
+            init = Initialize(9);       //100 알악세포 정보 들고오기
+        }
     }
 
     private void Awake()
@@ -165,7 +168,7 @@ public class Col_Group : MonoBehaviour
             Convert.ToDouble(data[i]["Trunk_Scale_Y_Growth_Min"].ToString())) + 
             Convert.ToDouble(data[i]["Trunk_Scale_Y_Growth_Min"].ToString()));
         //y축으로 늘어날 최대 크기
-        Growth_Time = baseNumber;           //커지는속도
+        //Growth_Time = baseNumber;           //커지는속도
         Growth_Position_y = Convert.ToSingle(rnd.NextDouble() * (Convert.ToDouble(data[i]["Trunk_Build_Position_Max"].ToString()) - 
             Convert.ToDouble(data[i]["Trunk_Build_Position_Min"].ToString())) + 
             Convert.ToDouble(data[i]["Trunk_Build_Position_Min"].ToString()));
