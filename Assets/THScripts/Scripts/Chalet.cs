@@ -100,8 +100,8 @@ public class Chalet : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
         if (UserData.Instance == null)
             return;
 
-        if(UserData.Instance.GetUserData.Cost >= cost)
-            UserData.Instance.GetUserData.Cost -= cost;
+        if (UserData.Instance.GetUserData.Cost < cost)
+            return;
 
 
         cylinder.Reset();
