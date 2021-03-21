@@ -18,7 +18,10 @@ public class CameraMove : MonoBehaviour
 
     void Update()
     {
-      
+        if (Input.GetMouseButtonDown(0))
+            isDragging = true;
+        if (Input.GetMouseButtonUp(0))
+            isDragging = false;
         if (this.isDragging)
             LookAround();
         CameraZoom();
@@ -34,7 +37,7 @@ public class CameraMove : MonoBehaviour
     
     void LookAround()//카메라 무빙
     {
-        Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X") * 3f, Input.GetAxis("Mouse Y") * 3f);//마우스 좌표 받기
+        Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X") * 3f, 0);//마우스 좌표 받기
         Vector3 camAngle = cameraArm.rotation.eulerAngles;
 
         float x = camAngle.x - mouseDelta.y;

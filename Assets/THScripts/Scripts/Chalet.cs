@@ -45,8 +45,7 @@ public class Chalet : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
     private Color[,] colors;
     private Color lastColor;
 
-    [SerializeField]
-    private Cylinder cylinder;
+    
 
     private void OnEnable()
     {
@@ -61,7 +60,6 @@ public class Chalet : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
         {
             for (int j = 0; j < height; j++)
             {
-
                 if (exceptIndex.Contains(new Vector2Int(i, j)))
                 {
                     defaultColors[i + j * width] = new Color(0, 0, 0, 0);
@@ -96,16 +94,11 @@ public class Chalet : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
 
     public void Apply()
     {
-        if (colors == null)
-            return;
-
         if (UserData.Instance == null)
             return;
 
         if(UserData.Instance.GetUserData.Cost >= cost)
             UserData.Instance.GetUserData.Cost -= cost;
-
-        cylinder.PlayCol(colors);
 
         Init();
     }
@@ -220,7 +213,6 @@ public class Chalet : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
             newColor = new Color(Mathf.Max(0.3f, newColor.r), Mathf.Max(0.3f, newColor.g), Mathf.Max(0.3f, newColor.b), 1);
             newColors[index] = newColor;
 
-            colors[x, y] = newColor;
 
             if (lastColor == Color.clear)
             {
@@ -342,7 +334,7 @@ public class Chalet : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
             
             newColor = new Color(Mathf.Max(0.3f, newColor.r), Mathf.Max(0.3f, newColor.g), Mathf.Max(0.3f, newColor.b), 1);
             newColors[current.x + current.y * width] = newColor;
-            colors[current.x, current.y] = newColor;
+
             SetPixel(newColors);
             currentSpreadCount--;
 
