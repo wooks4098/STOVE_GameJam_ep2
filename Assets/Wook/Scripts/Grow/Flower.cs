@@ -7,11 +7,19 @@ public class Flower : MonoBehaviour
     float time;
     public float MyScale_x;
     public float MyScale_y;
+
+    public Sprite[] sprite;
+    SpriteRenderer spriterenderer;
     public void Awake()
     {
         time = 0;
         MyScale_x = 0;
         MyScale_y = 0;
+
+        int rand;
+        rand = Random.Range(0, 40);
+        spriterenderer = GetComponentInChildren<SpriteRenderer>();
+        spriterenderer.sprite = sprite[rand];
     }
 
     void Start()
