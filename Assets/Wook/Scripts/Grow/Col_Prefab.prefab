@@ -43,16 +43,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be6a874fdfcf59b49861d564fbd52a09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Trunk_Count: 0
   Growth_Scale_x: 0.85
   Growth_Scale_y: 0.85
   Growth_Position_y: 0.85
-  Growth_Time: 2
+  Growth_Time: 20
   PreFab: {fileID: 4095953573107056943, guid: 2416d63e13fbf7b4cbc6e98ec94cae05, type: 3}
   Diffusion_Count: 3
   Try_Diffusion_Count: 3
   time: 0
   Diffusion_Time: 3
+  cylinder: {fileID: 0}
 --- !u!1 &1532575319737692350
 GameObject:
   m_ObjectHideFlags: 0
@@ -63,7 +63,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1532575319737692351}
   m_Layer: 0
-  m_Name: Col
+  m_Name: Col_Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
