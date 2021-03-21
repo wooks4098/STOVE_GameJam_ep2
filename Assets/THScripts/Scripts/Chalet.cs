@@ -45,6 +45,9 @@ public class Chalet : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
     private Color[,] colors;
     private Color lastColor;
 
+    [SerializeField]
+    private Cylinder cylinder;
+
     
 
     private void OnEnable()
@@ -99,6 +102,22 @@ public class Chalet : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
 
         if(UserData.Instance.GetUserData.Cost >= cost)
             UserData.Instance.GetUserData.Cost -= cost;
+
+        
+
+        for(int i = 0; i < width; i++)
+        {
+            for(int j =0; j< height; j++)
+            {
+                if (colors[i, j] == Color.clear)
+                    continue;
+
+                Point pos;
+                pos.x = i;
+                pos.y = j;
+                cylinder.Creat_Col(pos, colors[i, j]);
+            }
+        }
 
         Init();
     }
@@ -212,7 +231,7 @@ public class Chalet : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
 
             newColor = new Color(Mathf.Max(0.3f, newColor.r), Mathf.Max(0.3f, newColor.g), Mathf.Max(0.3f, newColor.b), 1);
             newColors[index] = newColor;
-
+            colors[x, y] = newColor;
 
             if (lastColor == Color.clear)
             {
@@ -334,6 +353,7 @@ public class Chalet : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
             
             newColor = new Color(Mathf.Max(0.3f, newColor.r), Mathf.Max(0.3f, newColor.g), Mathf.Max(0.3f, newColor.b), 1);
             newColors[current.x + current.y * width] = newColor;
+            colors[current.x, current.y] = newColor;
 
             SetPixel(newColors);
             currentSpreadCount--;

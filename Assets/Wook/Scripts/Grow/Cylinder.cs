@@ -33,10 +33,24 @@ public class Cylinder : MonoBehaviour
         }
 
         None_DataSet();
-        Point pos;
-        pos.x = 8;
-        pos.y = 8;
-        Creat_Col(pos);
+        //Point pos;
+        //pos.x = 8;
+        //pos.y = 8;
+        //Creat_Col(pos);
+    }
+
+    public void Creat_Col(Point pos, Color color)
+    {
+        string str;
+        cylinder[pos.y, pos.x] = true;
+        GameObject newObject = Instantiate(Col_Prefab);
+        str = "Col (" + pos.x + ")";
+        newObject.name = str;
+        newObject.GetComponentInChildren<Col_Group>().cylinder = this.gameObject.GetComponent<Cylinder>();
+        newObject.transform.parent = transform.GetChild(pos.y).transform;
+        newObject.GetComponentInChildren<Col_Group>().SetPos(pos.x, pos.y);
+        newObject.transform.localPosition = new Vector3(-pos.x, 0, 0);
+
     }
 
     public void Creat_Col(Point pos)
