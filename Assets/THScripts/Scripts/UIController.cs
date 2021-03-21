@@ -22,6 +22,8 @@ public class UIController : MonoBehaviour
     private GameObject common;
     [SerializeField]
     private GameObject petriDish;
+    [SerializeField]
+    private AudioSource source;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +56,10 @@ public class UIController : MonoBehaviour
             Main(false);
         }
 
+        if(toggle)
+        {
+            source.Stop();
+        }
         cultivate.SetActive(toggle);
         culrivatePressed.SetActive(toggle);
         petriDish.SetActive(toggle);

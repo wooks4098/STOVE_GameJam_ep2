@@ -145,7 +145,7 @@ public class User
 
     public User()
     {
-        cost = 1000;
+        cost = 500;
         mapDatas = new List<MapData>();
     }
 

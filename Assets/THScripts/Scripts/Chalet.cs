@@ -48,6 +48,8 @@ public class Chalet : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
     [SerializeField]
     private Cylinder cylinder;
 
+    [SerializeField]
+    private AudioSource source;
     
 
     private void OnEnable()
@@ -120,6 +122,7 @@ public class Chalet : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointer
         }
 
         Init();
+        source.Play();
     }
 
     private void Update()
