@@ -10,6 +10,8 @@ public class Flower : MonoBehaviour
 
     public Sprite[] sprite;
     SpriteRenderer spriterenderer;
+    GameObject Camera;
+
     public void Awake()
     {
         time = 0;
@@ -36,5 +38,19 @@ public class Flower : MonoBehaviour
 
         if (Time.deltaTime - Trunk_.start_time < 1)       //현재시간-꽃이켜진시간 < 2초
             transform.localScale = new Vector3(MyScale_x, MyScale_y, transform.localScale.z);
+    }
+    private void LateUpdate()
+    {
+        Look_Camera();
+    }
+    void Look_Camera()
+    {
+        Vector3 vec = Camera.transform.position - transform.position;
+
+        Quaternion q = Quaternion.LookRotation(vec);
+        transform.rotation = q;
+        var rot = transform.rotation.eulerAngles;
+
+        transform.rotation = Quaternion.Euler(0.0f, rot.y, 0.0f);
     }
 }
